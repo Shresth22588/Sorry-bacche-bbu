@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Maaf krdo na bbu 🥺</title>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;700;800&family=Caveat:wght@500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#ffe3ec; --card:#fff8fb; --ink:#5a2a3c; --pink:#ff6f9c; --soft:#ffb3cd; --muted:#9a5b73;
+  box-sizing:border-box; padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){--bg:#2a1620; --card:#3a1f2c; --ink:#ffe3ec; --pink:#ff7fa7; --soft:#7a3552; --muted:#e0a9bf;}
+}
+html{height:100%;scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;min-height:100%;background:var(--bg);color:var(--ink);font-family:'Baloo 2','Segoe UI',system-ui,sans-serif;display:flex;align-items:center;justify-content:center;padding:20px;overflow-x:hidden}
+.hearts{position:fixed;inset:0;pointer-events:none;overflow:hidden}
+.hearts span{position:absolute;bottom:-40px;font-size:20px;opacity:.5;animation:up linear infinite}
+@keyframes up{to{transform:translateY(-115vh) rotate(25deg);opacity:0}}
+.card{position:relative;max-width:440px;width:100%;background:var(--card);border-radius:36px;padding:34px 26px 28px;text-align:center;border:3px solid var(--soft);box-shadow:0 10px 0 var(--soft)}
+.bear{font-size:76px;line-height:1;display:inline-block;animation:sway 2.6s ease-in-out infinite}
+@keyframes sway{50%{transform:rotate(-7deg) translateY(-4px)}}
+h1{font-size:2.3rem;font-weight:800;margin:10px 0 4px;color:var(--pink);line-height:1.1}
+.sub{font-family:'Caveat','Comic Sans MS',cursive;font-size:1.5rem;color:var(--muted);margin:0 0 18px}
+.msg{font-size:1.08rem;line-height:1.6;margin:0 0 22px;min-height:7.5em}
+.btns{display:flex;gap:12px;justify-content:center;align-items:center;min-height:56px;position:relative}
+button{font:inherit;font-weight:700;font-size:1.05rem;border:0;border-radius:999px;padding:12px 22px;cursor:pointer;transition:transform .15s}
+button:focus-visible{outline:3px solid var(--ink);outline-offset:3px}
+#yes{background:var(--pink);color:#fff;box-shadow:0 5px 0 #d94a7a}
+#yes:active{transform:translateY(3px);box-shadow:0 2px 0 #d94a7a}
+#no{background:var(--soft);color:var(--ink)}
+.done{display:none}
+.done.show{display:block;animation:pop .5s ease}
+@keyframes pop{from{transform:scale(.6);opacity:0}}
+.done .bear{font-size:84px}
+.done p{font-size:1.1rem;line-height:1.6}
+@media (prefers-reduced-motion: reduce){*{animation:none!important}}
+</style>
+</head>
+<body>
+<div class="hearts" id="hearts" aria-hidden="true"></div>
+<main class="card">
+  <div id="ask">
+    <div class="bear">🧸</div>
+    <h1>Maaf krdo na bbu 🥺</h1>
+    <p class="sub">pleaseeee, pyaare se sorry...</p>
+    <p class="msg">Mujhe pata hai meri galti thi, aur mujhe bura lag raha hai. Tumhara gussa bhi cute lagta hai par tumhe udaas dekhna bilkul pasand nahi. Tum meri sabse pyaari ho, aur main tumhe kabhi hurt nahi karna chahta. Aage se pakka fir aisa nahi karunga bbu. Promise! 🤞💖<br>Sorry na bbu please sorry 🥺🙏<br>Please maaf krdo bbu 💗<br>I love you so much bbu, pakka fir kabhi aisa nahi hoga, pakka wala promise jaan, mere bacche 💖🥹</p>
+    <div class="btns">
+      <button id="yes">Maaf kiya 💗</button>
+      <button id="no">Nahi 😤</button>
+    </div>
+  </div>
+  <div class="done" id="done">
+    <div class="bear">🥰</div>
+    <h1>Yayyyy! 🎉</h1>
+    <p>Thank you meri jaan! Tum duniya ki sabse pyaari aur sabse samajhdaar bbu ho. Ab ek badi si hug aur chocolate meri taraf se 🤗🍫<br>I love you! 💕</p>
+  </div>
+</main>
+<script>
+(function(){
+  var h=document.getElementById('hearts'),e=['💗','💖','🌸','💕','✨'];
+  for(var i=0;i<16;i++){var s=document.createElement('span');
+    s.textContent=e[i%e.length];s.style.left=(Math.random()*100)+'%';
+    s.style.animationDuration=(7+Math.random()*7)+'s';s.style.animationDelay=(-Math.random()*10)+'s';
+    s.style.fontSize=(14+Math.random()*18)+'px';h.appendChild(s);}
+  var no=document.getElementById('no'),yes=document.getElementById('yes'),n=0;
+  var lines=['Nahi 😤','Pakka? 🥺','Plsss 🥹','Ek baar aur soch lo 😭','Dil toot jayega 💔','Ok ok, bas "Maaf kiya" dabao 😘'];
+  function dodge(){
+    n++; no.textContent=lines[Math.min(n,lines.length-1)];
+    yes.style.transform='scale('+Math.min(1+n*0.18,2)+')';
+    var x=(Math.random()*120-60),y=(Math.random()*50-25);
+    no.style.transform='translate('+x+'px,'+y+'px)';
+  }
+  no.addEventListener('click',dodge);
+  no.addEventListener('mouseenter',function(){if(n>1)dodge();});
+  yes.addEventListener('click',function(){
+    document.getElementById('ask').style.display='none';
+    document.getElementById('done').classList.add('show');
+    for(var i=0;i<30;i++){var s=document.createElement('span');
+      s.textContent='💖';s.style.left=Math.random()*100+'%';
+      s.style.animationDuration=(3+Math.random()*4)+'s';s.style.fontSize=(18+Math.random()*24)+'px';
+      s.style.opacity=.8;h.appendChild(s);}
+  });
+})();
+</script>
+</body>
+</html>
